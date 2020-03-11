@@ -7,9 +7,9 @@ class LinkContainer extends React.Component {
         super(props)
         /* TODO - Create state object for storing favLinks */
         this.state = {
-            favLinks: []
-            
+            favLinks: ['yeet', 'teet']
         }
+        this.handleSubmit = this.handleSubmit.bind(this)
     }
 
     removeCharacter = index => {
@@ -18,12 +18,22 @@ class LinkContainer extends React.Component {
         */
     }
 
-    handleSubmit = favLink => {
+    removeLink = (index) => {
+        const links = Object.assign([], this.state.favLinks)
+
+        links.splice(index, 1)
+ 
+        this.setState({links:links})
+
+        
+    }
+
+    handleSubmit = favLinks => {
         /*
             TODO - Create logic to setState and add new favLink to favLinks array in state
         */
        this.setState((state) => ({
-           
+        favLinks: state.favLinks.concat([state])
        }))
     }
 
@@ -40,9 +50,9 @@ class LinkContainer extends React.Component {
                 <h3>Add New</h3>
                 {/*TODO - Add Form Component */}
             
-            <Form />
+                <Form addNew= {this.state.handleSubmit} />
             </div>
-        );
+        )
     }
 }
 

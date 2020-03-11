@@ -9,16 +9,24 @@ class Form extends Component {
 
         */
        this.state = {
-           name: "",
-           URL: ""
+           name: '',
+           URL: ''
        }
+       this.updateNameLabel = this.updateNameLabel.bind(this)
+       this.handleChange = this.handleChange.bind(this)
+       this.onFormSubmit = this.onFormSubmit.bind(this)
     }
 
-    // handleChange = event => {
-    //     /*
-    //         TODO - Logic for changing state based on form changes
-    //     */
-    // }
+    handleChange = (event) => {
+        /*
+            TODO - Logic for changing state based on form changes
+        */
+       this.props.addNew(this.state.name)
+       
+       this.setState({
+        name: ''
+        })
+    }
 
     updateNameLabel = (event) => {
         this.setState({
@@ -42,17 +50,17 @@ class Form extends Component {
         return(
             <form>
                 {/* TODO - Logic for returning a form element with labels and inputs for link name and URL */}
-                <label for="name"> Name</label>
+                <label form="name"> Name </label>
                 <input
                 type="text"
                 value={this.state.name}
-                onChange={this.state.updateNameLabel}
+                onChange={this.updateNameLabel}
 
             />
 
-            <button type="submit"> Submit   </button>
+            <button type="submit"> Submit </button>
+            {/* <button onClick={this.handleChange}> Submit </button>  */}
             </form>
-
         )
     
     }
